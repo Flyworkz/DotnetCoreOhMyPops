@@ -6,13 +6,11 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using Microsoft.OpenApi.Models;
 using OhMyPops.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace OhMyPops
 {
@@ -29,7 +27,7 @@ namespace OhMyPops
         public void ConfigureServices(IServiceCollection services)
         {
             // Connection with postgreSQL database
-            services.AddDbContext<OhMyPopsContext>(options => options.UseNpgsql(Configuration.GetConnectionString("OhMyPopsConnection")));
+            services.AddDbContext<OhMyPopsContext>(options => options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddControllers();
 

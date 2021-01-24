@@ -5,7 +5,7 @@ using OhMyPops.Models;
 
 namespace OhMyPops.Controllers
 {
-    [Route("api/pops")]
+    [Route("api/[controller]")]
     [ApiController]
     public class PopsController : ControllerBase
     {
