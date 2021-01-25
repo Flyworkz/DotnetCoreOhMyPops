@@ -44,6 +44,11 @@ namespace OhMyPops.Data
             return _context.Pops.FirstOrDefault(pop => pop.Id == id);
         }
 
+        public IEnumerable<Pop> GetPopsByCollection(string clc)
+        {
+            return _context.Pops.Where(pop => pop.Collection.ToLower().Contains(clc.ToLower()));
+        }
+
         public bool SaveChanges()
         {
             return (_context.SaveChanges() >= 0);

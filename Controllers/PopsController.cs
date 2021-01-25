@@ -39,8 +39,19 @@ namespace OhMyPops.Controllers
             {
                 return Ok(_mapper.Map<PopReadDto>(popItem));
             }
-            return NotFound();
-            
+            return NotFound();     
+        }
+
+        // GET api/pops/collection?q={collection}
+        [HttpGet("collection")]
+        public ActionResult <PopReadDto> GetPopsByCollection([FromQuery]string q)
+        {
+            var popItems = _repository.GetPopsByCollection(q);
+            if (q != null)
+            {
+                 return Ok(_mapper.Map<IEnumerable<PopReadDto>>(popItems));
+            }
+            return NotFound();    
         }
 
         // POST api/pops

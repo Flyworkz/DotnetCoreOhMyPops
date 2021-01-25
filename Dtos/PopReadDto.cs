@@ -6,6 +6,8 @@ namespace OhMyPops.Dtos
 
         public int FigurineNumber { get; set; }
 
+        public string Collection { get; set; }
+
         public string Label { get; set; }
     }
 }

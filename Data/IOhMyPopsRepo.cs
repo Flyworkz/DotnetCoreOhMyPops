@@ -8,6 +8,7 @@ namespace OhMyPops.Data
         bool SaveChanges();
 
         IEnumerable<Pop> GetAllPops();
+        IEnumerable<Pop> GetPopsByCollection(string clc);
         Pop GetPopById(int id);
         void CreatePop(Pop pop);
         void UpdatePop(Pop pop);
