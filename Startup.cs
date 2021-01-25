@@ -11,6 +11,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using OhMyPops.Data;
 using Microsoft.EntityFrameworkCore;
+using AutoMapper;
 
 namespace OhMyPops
 {
@@ -30,6 +31,8 @@ namespace OhMyPops
             services.AddDbContext<OhMyPopsContext>(options => options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddControllers();
+
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
             services.AddScoped<IOhMyPopsRepo, SqlOhMyPopsRepo>();
         }

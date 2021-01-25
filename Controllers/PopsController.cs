@@ -1,6 +1,8 @@
 using System.Collections.Generic;
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using OhMyPops.Data;
+using OhMyPops.Dtos;
 using OhMyPops.Models;
 
 namespace OhMyPops.Controllers
@@ -10,27 +12,34 @@ namespace OhMyPops.Controllers
     public class PopsController : ControllerBase
     {
         private readonly IOhMyPopsRepo _repository;
+        private readonly IMapper _mapper;
 
-        public PopsController(IOhMyPopsRepo repository)
+        public PopsController(IOhMyPopsRepo repository, IMapper mapper)
         {
             _repository = repository;
+            _mapper = mapper;
         }
         
         // GET api/pops
         [HttpGet]
-        public ActionResult <IEnumerable<Pop>> GetAllPops() 
+        public ActionResult <IEnumerable<PopReadDto>> GetAllPops() 
         {
             var popItems = _repository.GetAllPops();
 
-            return Ok(popItems);
+            return Ok(_mapper.Map<IEnumerable<PopReadDto>>(popItems));
         }
 
         // GET api/pops/{id}
         [HttpGet("{id}")]
-        public ActionResult <Pop> GetPopById(int id)
+        public ActionResult <PopReadDto> GetPopById(int id)
         {
             var popItem = _repository.GetPopById(id);
-            return Ok(popItem);
+            if (popItem != null)
+            {
+                return Ok(_mapper.Map<PopReadDto>(popItem));
+            }
+            return NotFound();
+            
         }
     }
 }
