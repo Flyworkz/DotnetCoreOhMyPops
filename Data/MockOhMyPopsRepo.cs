@@ -5,6 +5,11 @@ namespace OhMyPops.Data
 {
     public class MockOhMyPopsRepo : IOhMyPopsRepo
     {
+        public Pop CreatePop(Pop pop)
+        {
+            throw new System.NotImplementedException();
+        }
+
         public IEnumerable<Pop> GetAllPops()
         {
             var pops = new List<Pop>
@@ -40,6 +45,16 @@ namespace OhMyPops.Data
                 Collection = "The Lord of the Rings",
                 Label = "Legolas"
             };
+        }
+
+        public bool SaveChanges()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        void IOhMyPopsRepo.CreatePop(Pop pop)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

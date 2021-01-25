@@ -30,7 +30,7 @@ namespace OhMyPops.Controllers
         }
 
         // GET api/pops/{id}
-        [HttpGet("{id}")]
+        [HttpGet("{id}", Name="GetPopById")]
         public ActionResult <PopReadDto> GetPopById(int id)
         {
             var popItem = _repository.GetPopById(id);
@@ -40,6 +40,19 @@ namespace OhMyPops.Controllers
             }
             return NotFound();
             
+        }
+
+        // POST api/pops
+        [HttpPost]
+        public ActionResult <PopReadDto> CreatePop(PopCreateDto popCreateDto)
+        {
+            var popModel = _mapper.Map<Pop>(popCreateDto);
+            _repository.CreatePop(popModel);
+            _repository.SaveChanges();
+
+            var popReadDto = _mapper.Map<PopReadDto>(popModel);
+            
+            return CreatedAtRoute(nameof(GetPopById), new {Id = popReadDto.Id}, popReadDto);
         }
     }
 }

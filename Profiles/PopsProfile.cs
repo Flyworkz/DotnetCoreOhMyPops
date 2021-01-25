@@ -8,7 +8,9 @@ namespace OhMyPops.Profiles
     {
         public PopsProfile()
         {
+            // Source -> Target
             CreateMap<Pop, PopReadDto>();
+            CreateMap<PopCreateDto, Pop>();
         }
     }
 }
