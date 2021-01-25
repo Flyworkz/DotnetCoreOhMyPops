@@ -24,6 +24,16 @@ namespace OhMyPops.Data
             _context.Pops.Add(pop);
         }
 
+        public void DeletePop(Pop pop)
+        {
+            if (pop == null)
+            {   
+                throw new ArgumentNullException(nameof(pop));
+            }
+
+            _context.Pops.Remove(pop);
+        }
+
         public IEnumerable<Pop> GetAllPops()
         {
             return _context.Pops.ToList();

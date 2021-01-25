@@ -10,6 +10,16 @@ namespace OhMyPops.Data
             throw new System.NotImplementedException();
         }
 
+        public void DeletePop(int id)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void DeletePop(Pop pop)
+        {
+            throw new System.NotImplementedException();
+        }
+
         public IEnumerable<Pop> GetAllPops()
         {
             var pops = new List<Pop>

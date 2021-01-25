@@ -11,5 +11,6 @@ namespace OhMyPops.Data
         Pop GetPopById(int id);
         void CreatePop(Pop pop);
         void UpdatePop(Pop pop);
+        void DeletePop(Pop pop);
     }
 }

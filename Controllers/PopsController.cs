@@ -99,5 +99,21 @@ namespace OhMyPops.Controllers
 
             return NoContent();
         }
+
+        // DELETE api/pops/{id}
+        [HttpDelete("{id}")]
+        public ActionResult DeletePop(int id)
+        {
+            var popModelFromRepo = _repository.GetPopById(id);
+            if (popModelFromRepo == null)
+            {
+                return NotFound();
+            }
+
+            _repository.DeletePop(popModelFromRepo);
+            _repository.SaveChanges();
+
+            return NoContent();
+        }
     }   
 }
