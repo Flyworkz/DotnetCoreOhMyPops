@@ -31,7 +31,7 @@ namespace OhMyPops
 
             services.AddControllers();
 
-            services.AddScoped<IOhMyPopsRepo, MockOhMyPopsRepo>();
+            services.AddScoped<IOhMyPopsRepo, SqlOhMyPopsRepo>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -5,7 +5,7 @@ namespace OhMyPops.Data
 {
     public interface IOhMyPopsRepo
     {
-        IEnumerable<Pop> GetAppPops();
+        IEnumerable<Pop> GetAllPops();
         Pop GetPopById(int id);
     }
 }

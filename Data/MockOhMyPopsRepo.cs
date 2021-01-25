@@ -5,7 +5,7 @@ namespace OhMyPops.Data
 {
     public class MockOhMyPopsRepo : IOhMyPopsRepo
     {
-        public IEnumerable<Pop> GetAppPops()
+        public IEnumerable<Pop> GetAllPops()
         {
             var pops = new List<Pop>
             {

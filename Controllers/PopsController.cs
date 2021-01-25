@@ -15,13 +15,12 @@ namespace OhMyPops.Controllers
         {
             _repository = repository;
         }
-
-        // private readonly MockOhMyPopsRepo _repository = new MockOhMyPopsRepo();
+        
         // GET api/pops
         [HttpGet]
         public ActionResult <IEnumerable<Pop>> GetAllPops() 
         {
-            var popItems = _repository.GetAppPops();
+            var popItems = _repository.GetAllPops();
 
             return Ok(popItems);
         }
