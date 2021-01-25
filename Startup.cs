@@ -12,6 +12,7 @@ using Microsoft.Extensions.Hosting;
 using OhMyPops.Data;
 using Microsoft.EntityFrameworkCore;
 using AutoMapper;
+using Newtonsoft.Json.Serialization;
 
 namespace OhMyPops
 {
@@ -30,7 +31,9 @@ namespace OhMyPops
             // Connection with postgreSQL database
             services.AddDbContext<OhMyPopsContext>(options => options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddControllers();
+            services.AddControllers().AddNewtonsoftJson(s => {
+                s.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+            });
 
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 

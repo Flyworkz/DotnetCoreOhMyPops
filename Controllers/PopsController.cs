@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using AutoMapper;
+using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using OhMyPops.Data;
 using OhMyPops.Dtos;
@@ -60,12 +61,11 @@ namespace OhMyPops.Controllers
         public ActionResult UpdatePop(int id, PopUpdateDto popUpdateDto)
         {
             var popModelFromRepo = _repository.GetPopById(id);
-            
             if (popModelFromRepo == null)
             {
                 return NotFound();
             }
-            
+
             _mapper.Map(popUpdateDto, popModelFromRepo);
 
             _repository.UpdatePop(popModelFromRepo);
@@ -73,5 +73,31 @@ namespace OhMyPops.Controllers
 
             return NoContent();
         }
-    }
+
+        // PATCH api/pops/{id}
+        [HttpPatch("{id}")]
+        public ActionResult PartialPopUpdate(int id, JsonPatchDocument<PopUpdateDto> patchDoc)
+        {
+            var popModelFromRepo = _repository.GetPopById(id);
+            if (popModelFromRepo == null)
+            {
+                return NotFound();
+            }
+
+            var popToPatch = _mapper.Map<PopUpdateDto>(popModelFromRepo);
+            patchDoc.ApplyTo(popToPatch, ModelState);
+
+            if (!TryValidateModel(popToPatch))
+            {
+                return ValidationProblem(ModelState);
+            }
+
+            _mapper.Map(popToPatch, popModelFromRepo);
+
+            _repository.UpdatePop(popModelFromRepo);
+            _repository.SaveChanges();
+
+            return NoContent();
+        }
+    }   
 }
