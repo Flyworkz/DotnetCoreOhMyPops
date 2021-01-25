@@ -11,6 +11,7 @@ namespace OhMyPops.Profiles
             // Source -> Target
             CreateMap<Pop, PopReadDto>();
             CreateMap<PopCreateDto, Pop>();
+            CreateMap<PopUpdateDto, Pop>();
         }
     }
 }

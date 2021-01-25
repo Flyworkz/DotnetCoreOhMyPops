@@ -51,8 +51,27 @@ namespace OhMyPops.Controllers
             _repository.SaveChanges();
 
             var popReadDto = _mapper.Map<PopReadDto>(popModel);
-            
+
             return CreatedAtRoute(nameof(GetPopById), new {Id = popReadDto.Id}, popReadDto);
+        }
+
+        // PUT api/pops/{id}
+        [HttpPut("{id}")]
+        public ActionResult UpdatePop(int id, PopUpdateDto popUpdateDto)
+        {
+            var popModelFromRepo = _repository.GetPopById(id);
+            
+            if (popModelFromRepo == null)
+            {
+                return NotFound();
+            }
+            
+            _mapper.Map(popUpdateDto, popModelFromRepo);
+
+            _repository.UpdatePop(popModelFromRepo);
+            _repository.SaveChanges();
+
+            return NoContent();
         }
     }
 }

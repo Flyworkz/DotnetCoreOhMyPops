@@ -52,6 +52,11 @@ namespace OhMyPops.Data
             throw new System.NotImplementedException();
         }
 
+        public void UpdatePop(Pop pop)
+        {
+            throw new System.NotImplementedException();
+        }
+
         void IOhMyPopsRepo.CreatePop(Pop pop)
         {
             throw new System.NotImplementedException();

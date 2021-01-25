@@ -10,5 +10,6 @@ namespace OhMyPops.Data
         IEnumerable<Pop> GetAllPops();
         Pop GetPopById(int id);
         void CreatePop(Pop pop);
+        void UpdatePop(Pop pop);
     }
 }

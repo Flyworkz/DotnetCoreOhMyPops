@@ -38,5 +38,10 @@ namespace OhMyPops.Data
         {
             return (_context.SaveChanges() >= 0);
         }
+
+        public void UpdatePop(Pop pop)
+        {
+            // Do nothing
+        }
     }
 }
